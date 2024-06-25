@@ -20,11 +20,15 @@
         margin: 0 10px;
       }
 
-      #trans {
+      #definition {
         font-size: large;
       }
 
       #conjugate {
+        font-size: large;
+      }
+
+      #synonym {
         font-size: large;
       }
 
@@ -36,20 +40,15 @@
   </head>
   <body>
     <h1 id="word">{{ word }} 📢</h1>
-    <h2>Definition</h2>
-    <ul id="trans">
-      {{ trans }}
-    </ul>
-    <h2>Conjugate</h2>
-    <ul id="conjugate">
-      {{ conjugate }}
-    </ul>
-    <h2>Example</h2>
-    <ol id="example">
-      {{ example }}
-    </ol>
-    <h2>Sentence Today</h2>
-    <p>{{ content }}</p>
-    <p>{{ translation }}</p>
+
+    <div>{{ definition }}</div>
+
+    <div>{{ conjugate }}</div>
+
+    <div>{{ synonym }}</div>
+
+    <div>{{ example }}</div>
+
+    <div>{{ quote }}</div>
   </body>
 </html>
