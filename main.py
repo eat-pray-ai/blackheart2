@@ -92,8 +92,14 @@ def quote(word: dict) -> str:
     {chr(10).join(result)}
   """
 
-
-hti = Html2Image(size=(540, 960))
+custom_flags=[
+  "--no-sandbox",
+  "--disable-gpu",
+  "--default-background-color=000000",
+  "--hide-scrollbars",
+  "--enable-features=ConversionMeasurement,AttributionReportingCrossAppWeb",
+  ]
+hti = Html2Image(size=(540, 960), custom_flags=custom_flags)
 with open("./template.html", "r") as f:
   html = f.read()
 

@@ -4,15 +4,15 @@ from requests import get
 
 
 vocabularies: dict[str, int] = {
-  "cet4": 7,
-  "cet6": 5,
-  "tem4": 3,
-  "tem8": 1,
-  "gmat": 2,
-  "gre": 2,
-  "ielts": 2,
-  "sat": 2,
-  "toefl": 2,
+  "CET4": 7,
+  "CET6": 5,
+  "TEM4": 3,
+  "TEM8": 1,
+  "GMAT": 2,
+  "GRE": 2,
+  "IELTS": 2,
+  "SAT": 2,
+  "TOEFL": 2,
 }
 
 
