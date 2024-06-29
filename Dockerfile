@@ -9,6 +9,4 @@ RUN apt-get update && apt-get install -y \
 
 COPY . .
 RUN pipenv sync -d
-RUN pipenv run python main.py
-RUN ls -alh
-RUN file=$(ls ./utils/*.mp4) && echo "file=$file" >> $GITHUB_OUTPUT
+ENTRYPOINT [ "/blackheart2/entrypoint.sh" ]
