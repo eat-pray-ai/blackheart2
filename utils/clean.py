@@ -103,7 +103,7 @@ def clean_word(word: dict) -> dict:
 
   try:
     quote = get("https://apiv3.shanbay.com/weapps/dailyquote/quote/").json()
-    cleaned["quote"] = {quote["content"]: quote["translation"]}
+    cleaned["quote"] = [quote["content"], quote["translation"]]
   except Exception as e:
     print(e)
 
