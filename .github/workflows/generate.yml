@@ -1,0 +1,16 @@
+name: generate video
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - id: generate
+        uses: eat-pray-ai/blackheart2/.github/actions/generate-video@main
+      - name: Upload video
+        shell: bash
+        run: |
+          ls -alh
+          echo "video ${{ steps.generate.outputs.file}} generated"

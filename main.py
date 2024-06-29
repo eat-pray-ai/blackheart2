@@ -168,7 +168,7 @@ async def video(word: dict, html: str):
     video_audio = video_clip.subclip(0, duration).set_audio(audio_clip)
     videos.append(video_audio)
 
-  concatenate_videoclips(videos).write_videofile(f"{word['word']}-{word['type']}.mp4")
+  concatenate_videoclips(videos).write_videofile(f"./utils/{word['word']}-{word['type']}.mp4")
 
 
 if __name__ == "__main__":

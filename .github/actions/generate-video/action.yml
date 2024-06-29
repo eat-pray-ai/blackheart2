@@ -1,0 +1,10 @@
+name: generate video
+description: generate video with blackheart2
+
+outputs:
+  file:
+    description: video file name
+
+runs:
+  using: docker
+  image: ../../../Dockerfile
