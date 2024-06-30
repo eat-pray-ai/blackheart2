@@ -10,9 +10,11 @@ jobs:
       - id: generate
         uses: eat-pray-ai/blackheart2/.github/actions/generate-video@main
       - id: title
-        run: echo "title=$(basename ${{ steps.generate.outputs.file}} | cut -d'.' -f1)" >> $GITHUB_OUTPUT
+        run: |
+          echo "title=$(basename ${{ steps.generate.outputs.file}} | cut -d'.' -f1)" >> $GITHUB_OUTPUT
       - name: upload video
         uses: eat-pray-ai/yutu/actions/upload@main
         with:
+          credential: ${{ secrets.YOUTUBE_CREDENTIAL }}
           token: ${{ secrets.YOUTUBE_TOKEN }}
-          flags: "-f ${{ steps.generate.outputs.file}} -t ${{ steps.title.outputs.title}} -p public -g 22"
+          flags: "-f ${{ steps.generate.outputs.file}} -t ${{ steps.title.outputs.title}} -p public -k true -g 22"
