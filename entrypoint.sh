@@ -3,5 +3,5 @@
 cd $(dirname $0)
 
 pipenv run python main.py
-file=$(ls ./utils/*.mp4)
-echo "file=$file" >> $GITHUB_OUTPUT
+file=$(ls /github/workspace/*.mp4)
+echo "title=$(basename $file | cut -d'.' -f1)" >> $GITHUB_OUTPUT
