@@ -18,7 +18,7 @@ vocabularies: dict[str, int] = {
 
 def raw_word() -> dict:
   vocab = choices(list(vocabularies.keys()), weights=vocabularies.values())[0]
-  with open(f"./vocabulary/{vocab}.json", "r") as f:
+  with open(f"./vocabulary/{vocab}.json", "r", encoding="utf8") as f:
     try:
       words = json.load(f)
     except json.decoder.JSONDecodeError as e:

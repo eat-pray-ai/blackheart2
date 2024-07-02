@@ -6,7 +6,7 @@ from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips,
 from utils.clean import raw_word, clean_word
 
 ids: list = []
-custom_flags=[
+custom_flags = [
   "--no-sandbox",
   "--disable-gpu",
   "--default-background-color=000000",
@@ -25,9 +25,9 @@ def definition(word: dict) -> str:
   template = """<li id="{}">{}<br />{}</li>"""
   ids.append([f"definition", "definition", "", 1, 0])
   for pos, cn, en in word["definition"]:
-    id = f"definition-{len(result)}"
-    ids.append([id, cn, en, 0, 1])
-    result.append(template.format(id, f"{pos} {cn}", en))
+    iid = f"definition-{len(result)}"
+    ids.append([iid, cn, en, 0, 1])
+    result.append(template.format(iid, f"{pos} {cn}", en))
 
   return f"""
     <h2 id="definition">Definition 释义</h2>
@@ -45,9 +45,9 @@ def conjugate(word: dict) -> str:
   template = """<li id="{}">{}</li>"""
   ids.append(["conjugate", "conjugate", "", 1, 0])
   for pos, cn, en in word["conjugate"]:
-    id = f"conjugate-{len(result)}"
-    ids.append([id, en, cn, 1, 0])
-    result.append(template.format(id, f"{pos} {en}: {cn}"))
+    iid = f"conjugate-{len(result)}"
+    ids.append([iid, en, cn, 1, 0])
+    result.append(template.format(iid, f"{pos} {en}: {cn}"))
 
   return f"""
     <h2 id="conjugate">Conjugate 同根词</h2>
@@ -65,9 +65,9 @@ def synonym(word: dict) -> str:
   template = """<li id="{}">{}</li>"""
   ids.append(["synonym", "synonym", "", 1, 0])
   for pos, cn, en in word["synonym"]:
-    id = f"synonym-{len(result)}"
-    ids.append([id, cn, en, 0, 1])
-    result.append(template.format(id, f"{pos} {cn}: {en}"))
+    iid = f"synonym-{len(result)}"
+    ids.append([iid, cn, en, 0, 1])
+    result.append(template.format(iid, f"{pos} {cn}: {en}"))
 
   return f"""
     <h2 id="synonym">Synonym 近义词</h2>
@@ -85,9 +85,9 @@ def example(word: dict) -> str:
   template = """<li id="{}">{}<br />{}</li>"""
   ids.append(["example", "example", "", 1, 0])
   for cn, en in word["example"]:
-    id = f"example-{len(result)}"
-    ids.append([id, en, cn, 1, 0])
-    result.append(template.format(id, en, cn))
+    iid = f"example-{len(result)}"
+    ids.append([iid, en, cn, 1, 0])
+    result.append(template.format(iid, en, cn))
 
   return f"""
     <h2 id="example">Example 例句</h2>
@@ -134,20 +134,20 @@ def init():
 
 async def video(word: dict, html: str):
   videos = []
-  for i, id in enumerate(ids):
+  for i, iid in enumerate(ids):
     hti.screenshot(
       html_str=html,
-      css_str=f"#{id[0]} {{ font-weight: bold; }}",
+      css_str=f"#{iid[0]} {{ font-weight: bold; }}",
       save_as=f"{word['word']}-{i}.png"
     )
 
     audios = []
-    if id[1] != "":
-      communicate = Communicate(id[1], voices[id[3]])
+    if iid[1] != "":
+      communicate = Communicate(iid[1], voices[iid[3]])
       await communicate.save(f"{word['word']}-{i}-0.mp3")
       audios.append(AudioFileClip(f"{word['word']}-{i}-0.mp3"))
-    if id[2] != "":
-      communicate = Communicate(id[2], voices[id[4]])
+    if iid[2] != "":
+      communicate = Communicate(iid[2], voices[iid[4]])
       await communicate.save(f"{word['word']}-{i}-1.mp3")
       audios.append(AudioFileClip(f"{word['word']}-{i}-1.mp3"))
 
