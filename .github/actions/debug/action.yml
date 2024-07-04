@@ -1,0 +1,15 @@
+name: debug
+description: Debug action
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        pwd
+        ls -alh
+        echo "/__w/blackheart2/blackheart2"
+        ls -alh /__w/blackheart2/blackheart2
+        echo "/home/runner/work/blackheart2/blackheart2"
+        ls -alh /home/runner/work/blackheart2/blackheart2
+        echo ${{ github.workspace }}
