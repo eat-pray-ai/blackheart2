@@ -15,12 +15,17 @@ jobs:
       - id: generate
         shell: bash
         run: |
+          cd /blackheart2
+#          ./entrypoint.sh
+      - name: test
+        run: |
           pwd
           ls -alh
+          env
       - name: upload video
         if: false
         uses: eat-pray-ai/yutu/actions/upload@main
         with:
           credential: ${{ secrets.YOUTUBE_CREDENTIAL }}
           token: ${{ secrets.YOUTUBE_TOKEN }}
-          flags: "-f ${{ github.workspace }}/${{ steps.generate.outputs.title }}.mp4 -t ${{ steps.generate.outputs.title }} -p public -k true -g 22"
+          flags: "-f ${{ github.workspace }}/${{ steps.generate.outputs.title }}.mp4 -t ${{ steps.generate.outputs.title }} -T ${{ steps.generate.outputs.tag }} -p public -k true -g 22"
