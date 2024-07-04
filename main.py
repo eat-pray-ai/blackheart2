@@ -1,3 +1,4 @@
+import os
 import cv2
 import asyncio
 from html2image import Html2Image
@@ -168,7 +169,8 @@ async def video(word: dict, html: str):
     video_audio = video_clip.subclip(0, duration).set_audio(audio_clip)
     videos.append(video_audio)
 
-  concatenate_videoclips(videos).write_videofile(f"/github/workspace/{word['word']}-{word['type']}.mp4")
+  out = os.environ.get("GITHUB_WORKSPACE", ".")
+  concatenate_videoclips(videos).write_videofile(f"{out}/{word['word']}-{word['type']}.mp4")
 
 
 if __name__ == "__main__":
