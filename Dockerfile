@@ -9,4 +9,4 @@ RUN apt-get update && apt-get install -y \
 
 COPY . .
 RUN pipenv sync -d
-ENTRYPOINT [ "/blackheart2/entrypoint.sh" ]
+#ENTRYPOINT [ "/blackheart2/entrypoint.sh" ]

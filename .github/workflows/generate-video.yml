@@ -6,10 +6,19 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/eat-pray-ai/blackheart2:main
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ github.token }}
     steps:
       - id: generate
-        uses: eat-pray-ai/blackheart2/.github/actions/generate-video@main
+        shell: bash
+        run: |
+          pwd
+          ls -alh
       - name: upload video
+        if: false
         uses: eat-pray-ai/yutu/actions/upload@main
         with:
           credential: ${{ secrets.YOUTUBE_CREDENTIAL }}
