@@ -2,6 +2,11 @@ name: blackheart2
 
 on:
   workflow_dispatch:
+#  schedule:
+#    - cron: '55 0 * * *'
+#    - cron: '18 3 * * *'
+#    - cron: '19 10 * * *'
+#    - cron: '55 15 * * *'
 
 jobs:
   generate:
