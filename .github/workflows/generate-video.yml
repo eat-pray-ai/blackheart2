@@ -2,11 +2,11 @@ name: blackheart2
 
 on:
   workflow_dispatch:
-#  schedule:
-#    - cron: '55 0 * * *'
-#    - cron: '18 3 * * *'
-#    - cron: '19 10 * * *'
-#    - cron: '55 15 * * *'
+  schedule:
+    - cron: '52 0 * * *'
+    - cron: '18 3 * * *'
+    - cron: '19 10 * * *'
+    - cron: '55 15 * * *'
 
 jobs:
   generate:
@@ -27,4 +27,8 @@ jobs:
         with:
           credential: ${{ secrets.YOUTUBE_CREDENTIAL }}
           token: ${{ secrets.YOUTUBE_TOKEN }}
-          flags: "-f ./${{ steps.generate.outputs.title }}.mp4 -t ${{ steps.generate.outputs.title }} -T ${{ steps.generate.outputs.tag }} -p public -k true -g 22"
+          file: "./${{ steps.generate.outputs.title }}.mp4"
+          title: ${{ steps.generate.outputs.title }}
+          description: ${{ steps.generate.outputs.description }}
+          tags: ${{ steps.generate.outputs.tag }}
+          rest-flags: "-p public -k true -g 22"
