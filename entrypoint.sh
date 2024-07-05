@@ -21,5 +21,7 @@ EOM
 {
   echo "title=$title"
   echo "tag=$tag"
-  echo "description=$description"
+  echo "description<<EOV"
+  echo "$description"
+  echo "EOV"
 } >> "$GITHUB_OUTPUT"
