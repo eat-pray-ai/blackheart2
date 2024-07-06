@@ -19,6 +19,8 @@ jobs:
     steps:
       - id: generate
         shell: bash
+        env:
+          YOUTUBE_PLAYLISTS: ${{ vars.YOUTUBE_PLAYLISTS }}
         run: |
           cd /blackheart2
           ./entrypoint.sh
@@ -31,4 +33,4 @@ jobs:
           title: ${{ steps.generate.outputs.title }}
           description: ${{ steps.generate.outputs.description }}
           tags: ${{ steps.generate.outputs.tag }}
-          rest-flags: "-p public -k true -g 22"
+          rest-flags: "-y ${{ steps.generate.outputs.playlistId }} -p public -k true -g 22"
