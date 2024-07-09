@@ -3,5 +3,6 @@
 *.png
 *.mp3
 *.mp4
+*.txt
 .vscode
 .idea

@@ -34,3 +34,12 @@ jobs:
           description: ${{ steps.generate.outputs.description }}
           tags: ${{ steps.generate.outputs.tag }}
           rest-flags: "-y ${{ steps.generate.outputs.playlistId }} -p public -k true -g 22"
+      - shell: bash
+        run: |
+          cat ./youtube.token.json | base64 > ./youtube.token.b64
+          gpg --batch -c --cipher-algo AES256 --passphrase ${{ secrets.GPG_PASSPHRASE }} ./youtube.token.b64
+      - name: cache token
+        uses: actions/cache@v4
+        with:
+          path: ./youtube.token.json.gpg
+          key: youtube-token-${{ hashFiles('./youtube.token.b64.gpg') }}
