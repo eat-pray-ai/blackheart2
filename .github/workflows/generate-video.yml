@@ -21,7 +21,9 @@ jobs:
         shell: bash
         env:
           YOUTUBE_PLAYLISTS: ${{ vars.YOUTUBE_PLAYLISTS }}
-        run: pipenv run python /blackheart2/main.py
+        run: |
+          cd /blackheart2
+          pipenv run python ./main.py
       - name: upload video
         if: false
         uses: eat-pray-ai/yutu/actions/upload@main
@@ -45,4 +47,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          pipenv run python /blackheart2/encrypt.py
+          cd /blackheart2
+          pipenv run python ./encrypt.py
