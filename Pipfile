@@ -10,6 +10,7 @@ numpy = "*"
 opencv-contrib-python-headless = "*"
 edge-tts = "*"
 requests = "*"
+pynacl = "*"
 
 [dev-packages]
 

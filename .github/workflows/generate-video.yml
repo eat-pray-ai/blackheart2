@@ -21,10 +21,9 @@ jobs:
         shell: bash
         env:
           YOUTUBE_PLAYLISTS: ${{ vars.YOUTUBE_PLAYLISTS }}
-        run: |
-          cd /blackheart2
-          ./entrypoint.sh
+        run: pipenv run python /blackheart2/main.py
       - name: upload video
+        if: false
         uses: eat-pray-ai/yutu/actions/upload@main
         with:
           credential: ${{ secrets.YOUTUBE_CREDENTIAL }}
@@ -36,11 +35,14 @@ jobs:
           rest-flags: "-y ${{ steps.generate.outputs.playlistId }} -p public -k true -g 22"
       - shell: bash
         run: |
-          cat ./youtube.token.json | base64 > ./youtube.token.b64
-          gpg --batch -c --cipher-algo AES256 --passphrase ${{ secrets.GPG_PASSPHRASE }} ./youtube.token.b64
-          ls -alh
-      - name: cache token
-        uses: actions/cache@v4
-        with:
-          path: ./youtube.token.b64.gpg
-          key: youtube-token-${{ hashFiles('./youtube.token.b64.gpg') }}
+          echo ${{ secrets.YOUTUBE_TOKEN }} | base64 --decode > ./youtube.token.json
+          echo "title= ${{ steps.generate.outputs.title }}"
+          echo "tag= ${{ steps.generate.outputs.tag }}"
+          echo "playlistId= ${{ steps.generate.outputs.playlistId }}"
+          echo "description= ${{ steps.generate.outputs.description }}"
+      - name: update token
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pipenv run python /blackheart2/encrypt.py

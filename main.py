@@ -1,6 +1,8 @@
 import os
 import cv2
 import asyncio
+from json import loads
+from textwrap import dedent
 from html2image import Html2Image
 from edge_tts import Communicate
 from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips, concatenate_audioclips
@@ -173,7 +175,28 @@ async def video(word: dict, html: str):
   concatenate_videoclips(videos).write_videofile(f"{out}/{word['word']}-{word['type']}.mp4")
 
 
+def output(word: dict):
+  title = f"{word['word']}-{word['type']}"
+  tag = word["type"]
+  playlistId = loads(os.environ.get("YOUTUBE_PLAYLISTS"))[tag]
+  description = dedent(f"""\
+    Keep learning with me 🌱
+    {word} is a important word in {tag}, grasp it to make yourself one step further! 🤓
+    Your subscription and thumb up👍 are my motivation to create more content 🤗
+    
+    The video's generation is AI🤖 POWERED! Wanna create your own video?
+    Check out my Github project 🚀: https://github.com/eat-pray-ai/yutu
+  """)
+
+  with open(os.environ.get("GITHUB_OUTPUT"), "a", encoding="utf-8") as f:
+    f.write(f"title={title}\n")
+    f.write(f"tag={tag}\n")
+    f.write(f"playlistId={playlistId}\n")
+    f.write(f"description={description}")
+
+
 if __name__ == "__main__":
   word, html = init()
   asyncio.run(video(word, html))
+  output(word)
   print("Done!")
