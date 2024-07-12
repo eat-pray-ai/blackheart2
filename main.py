@@ -178,7 +178,7 @@ async def video(word: dict, html: str):
 def output(word: dict):
   title = f"{word['word']}-{word['type']}"
   tag = word["type"]
-  playlistId = loads(os.environ.get("YOUTUBE_PLAYLISTS"))[tag]
+  playlist_id = loads(os.environ.get("YOUTUBE_PLAYLISTS"))[tag]
   description = dedent(f"""\
     Keep learning with me 🌱
     {word['word']} is a important word in {tag}, grasp it to make yourself one step further! 🤓
@@ -191,8 +191,8 @@ def output(word: dict):
   with open(os.environ.get("GITHUB_OUTPUT"), "a", encoding="utf-8") as f:
     f.write(f"title={title}\n")
     f.write(f"tag={tag}\n")
-    f.write(f"playlistId={playlistId}\n")
-    f.write(f"description={description}")
+    f.write(f"playlistId={playlist_id}\n")
+    f.write(f"description<<EOV\n{description}\nEOV")
 
 
 if __name__ == "__main__":

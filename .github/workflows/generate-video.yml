@@ -26,7 +26,7 @@ jobs:
         run: |
           mv ./* /blackheart2
           cd /blackheart2
-          pipenv run python ./main.py
+          # pipenv run python ./main.py
       - name: upload video
         if: false
         uses: eat-pray-ai/yutu/actions/upload@main
@@ -40,15 +40,12 @@ jobs:
           rest-flags: "-y ${{ steps.generate.outputs.playlistId }} -p public -k true -g 22"
       - shell: bash
         run: |
-          echo ${{ secrets.YOUTUBE_TOKEN }} | base64 --decode > ./youtube.token.json
-          echo "title= ${{ steps.generate.outputs.title }}"
-          echo "tag= ${{ steps.generate.outputs.tag }}"
-          echo "playlistId= ${{ steps.generate.outputs.playlistId }}"
-          echo "description= ${{ steps.generate.outputs.description }}"
+          echo ${{ secrets.YOUTUBE_TOKEN }} > ./youtube.token.b64
       - name: update token
         shell: bash
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.ENCRYPT_PAT }}
         run: |
+          mv ./youtube.token.b64 /blackheart2
           cd /blackheart2
           pipenv run python ./encrypt.py
