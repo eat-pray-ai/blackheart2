@@ -181,7 +181,7 @@ def output(word: dict):
   playlistId = loads(os.environ.get("YOUTUBE_PLAYLISTS"))[tag]
   description = dedent(f"""\
     Keep learning with me 🌱
-    {word} is a important word in {tag}, grasp it to make yourself one step further! 🤓
+    {word['word']} is a important word in {tag}, grasp it to make yourself one step further! 🤓
     Your subscription and thumb up👍 are my motivation to create more content 🤗
     
     The video's generation is AI🤖 POWERED! Wanna create your own video?

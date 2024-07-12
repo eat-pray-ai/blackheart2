@@ -17,11 +17,14 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ github.token }}
     steps:
+      - name: checkout
+        uses: actions/checkout@v4
       - id: generate
         shell: bash
         env:
           YOUTUBE_PLAYLISTS: ${{ vars.YOUTUBE_PLAYLISTS }}
         run: |
+          mv ./* /blackheart2
           cd /blackheart2
           pipenv run python ./main.py
       - name: upload video

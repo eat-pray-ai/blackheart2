@@ -9,6 +9,6 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/* \
   && pip install pipenv
 
-COPY . .
+COPY .env Pipfile Pipfile.lock ./
 RUN pipenv sync -d
 #ENTRYPOINT [ "/blackheart2/entrypoint.sh" ]

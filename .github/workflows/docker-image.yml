@@ -5,8 +5,9 @@ on:
   push:
     paths:
       - 'Dockerfile'
-      - 'entrypoint.sh'
-      - 'main.py'
+      - '.env'
+      - 'Pipfile'
+      - 'Pipfile.lock'
 
 jobs:
   build-push:
