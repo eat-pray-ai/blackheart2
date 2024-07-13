@@ -41,7 +41,7 @@ jobs:
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.ENCRYPT_PAT }}
-          YOUTUBE_TOKEN: ${{ secrets.YOUTUBE_TOKEN }}
         run: |
+          cp ./youtube.token.json /blackheart2
           cd /blackheart2
           pipenv run python ./encrypt.py

@@ -50,9 +50,10 @@ def update_secret(github_token: str, secret: dict, key_id: str) -> int:
 def main():
   github_token = os.environ.get("GH_TOKEN")
   key = get_key(github_token)
-  print(key)
 
-  youtube_token = os.environ.get("YOUTUBE_TOKEN")
+  with open("./youtube.token.json", "r") as f:
+    youtube_token = f.read()
+
   encrypted = encrypt(key["key"], youtube_token)
   secret = {
     "name": "YOUTUBE_TOKEN",
