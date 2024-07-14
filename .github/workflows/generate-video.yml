@@ -37,10 +37,15 @@ jobs:
           description: ${{ steps.generate.outputs.description }}
           tags: ${{ steps.generate.outputs.tag }}
           rest-flags: "-y ${{ steps.generate.outputs.playlistId }} -p public -k true -g 22"
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - name: update token
         shell: bash
         env:
-          GH_TOKEN: ${{ secrets.ENCRYPT_PAT }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           cp ./youtube.token.json /blackheart2
           cd /blackheart2
