@@ -51,8 +51,8 @@ def main():
   github_token = os.environ.get("GH_TOKEN")
   key = get_key(github_token)
 
-  with open("./youtube.token.json", "r") as f:
-    youtube_token = f.read()
+  with open("./youtube.token.json", "rb") as f:
+    youtube_token = b64encode(f.read()).decode("utf-8")
 
   encrypted = encrypt(key["key"], youtube_token)
   secret = {
