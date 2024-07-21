@@ -36,7 +36,7 @@ jobs:
           title: ${{ steps.generate.outputs.title }}
           description: ${{ steps.generate.outputs.description }}
           tags: ${{ steps.generate.outputs.tag }}
-          rest-flags: "-y ${{ steps.generate.outputs.playlistId }} -p public -k true -g 22"
+          rest-flags: "-y ${{ steps.generate.outputs.playlistId }} -p public -g 22"
       - uses: actions/create-github-app-token@v1
         id: app-token
         with:
