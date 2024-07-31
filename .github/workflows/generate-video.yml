@@ -28,7 +28,7 @@ jobs:
           cd /blackheart2
           pipenv run python ./main.py
       - name: upload video
-        uses: eat-pray-ai/yutu/actions/upload@main
+        uses: eat-pray-ai/youtube-uploader@main
         with:
           credential: ${{ secrets.YOUTUBE_CREDENTIAL }}
           token: ${{ secrets.YOUTUBE_TOKEN }}
