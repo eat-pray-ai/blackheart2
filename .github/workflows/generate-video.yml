@@ -27,7 +27,7 @@ jobs:
           mv ./* /blackheart2
           cd /blackheart2
           pipenv run python ./main.py
-      - name: upload video
+      - id: upload
         uses: eat-pray-ai/youtube-uploader@main
         with:
           credential: ${{ secrets.YOUTUBE_CREDENTIAL }}
@@ -36,7 +36,12 @@ jobs:
           title: ${{ steps.generate.outputs.title }}
           description: ${{ steps.generate.outputs.description }}
           tags: ${{ steps.generate.outputs.tag }}
+          output: json
           rest-flags: "-y ${{ steps.generate.outputs.playlistId }} -p public -g 22"
+      - shell: bash
+        continue-on-error: true
+        run: |
+          echo ${{ steps.upload.outputs.response }} | jq '.id'
       - uses: actions/create-github-app-token@v1
         id: app-token
         with:
