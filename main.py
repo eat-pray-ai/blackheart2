@@ -193,8 +193,8 @@ def output(word: dict):
     f.write(f"title={title}\n")
     f.write(f"tag={tag}\n")
     f.write(f"playlistId={playlist_id}\n")
-    f.write(f"comment<<EOV\n{comment}\nEOV")
-    f.write(f"description<<EOV\n{description}\nEOV")
+    f.write(f"comment<<EOC\n{comment}\nEOC\n")
+    f.write(f"description<<EOD\n{description}\nEOD")
 
 
 if __name__ == "__main__":
