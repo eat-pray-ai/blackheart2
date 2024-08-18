@@ -38,10 +38,20 @@ jobs:
           tags: ${{ steps.generate.outputs.tag }}
           output: json
           rest-flags: "-y ${{ steps.generate.outputs.playlistId }} -p public -g 22"
-      - shell: bash
+      - id: vid
+        shell: bash
         continue-on-error: true
         run: |
           echo ${{ steps.upload.outputs.response }} | jq '.id'
+          video_id=$(echo ${{ steps.upload.outputs.response }} | jq '.id')
+          echo "video_id=$video_id" >> $GITHUB_OUTPUT
+      - uses: eat-pray-ai/youtube-action@main
+        with:
+          credential: ${{ secrets.YOUTUBE_CREDENTIAL }}
+          token: ${{ secrets.YOUTUBE_TOKEN }}
+          command: commentThread
+          subcommand: insert
+          flags: '-a ${{ vars.YOUTUBE_CHANNEL_ID }} -c ${{ vars.YOUTUBE_CHANNEL_ID }} -v ${{ steps.vid.outputs.video_id }} -t "${{ steps.generate.outputs.comment }}"'
       - uses: actions/create-github-app-token@v1
         id: app-token
         with:

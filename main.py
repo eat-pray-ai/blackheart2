@@ -183,7 +183,8 @@ def output(word: dict):
     Keep learning with me 🌱
     {word['word']} is a important word in {tag}, grasp it to make yourself one step further! 🤓
     Your subscription and thumb up👍 are my motivation to create more content 🤗
-    
+  """)
+  comment = dedent(f"""\
     The video's generation is AI🤖 POWERED! Wanna create your own video?
     Check out my Github project 🚀: https://github.com/eat-pray-ai/yutu
   """)
@@ -192,6 +193,7 @@ def output(word: dict):
     f.write(f"title={title}\n")
     f.write(f"tag={tag}\n")
     f.write(f"playlistId={playlist_id}\n")
+    f.write(f"comment<<EOV\n{comment}\nEOV")
     f.write(f"description<<EOV\n{description}\nEOV")
 
 
