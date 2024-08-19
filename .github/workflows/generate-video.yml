@@ -3,7 +3,6 @@ name: blackheart2
 on:
   workflow_dispatch:
   schedule:
-    - cron: '22 0 * * *'
     - cron: '18 3 * * *'
     - cron: '19 10 * * *'
     - cron: '55 15 * * *'
@@ -52,6 +51,13 @@ jobs:
           command: commentThread
           subcommand: insert
           flags: '-a ${{ vars.YOUTUBE_CHANNEL_ID }} -c ${{ vars.YOUTUBE_CHANNEL_ID }} -v ${{ steps.vid.outputs.video_id }} -t "${{ steps.generate.outputs.comment }}"'
+      - uses: eat-pray-ai/youtube-action@main
+        with:
+          credential: ${{ secrets.YOUTUBE_CREDENTIAL }}
+          token: ${{ secrets.YOUTUBE_TOKEN }}
+          command: video
+          subcommand: rate
+          flags: '-i ${{ steps.vid.outputs.video_id }} -r like'
       - uses: actions/create-github-app-token@v1
         id: app-token
         with:
