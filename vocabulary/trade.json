@@ -1,0 +1,221 @@
+[
+  {
+    "wordRank": 1,
+    "headWord": "trade",
+    "content": {
+      "word": {
+        "wordHead": "trade",
+        "wordId": "CET6_2_1",
+        "content": {
+          "sentence": {
+            "sentences": [
+              {
+                "sContent": "They had to travel into town to trade the produce from their farm.",
+                "sCn": "他们不得不到镇上去出售他们农场的产品。"
+              },
+              { "sContent": "We traded necklaces.", "sCn": "我们交换了项链。" }
+            ],
+            "desc": "例句"
+          },
+          "realExamSentence": {
+            "sentences": [
+              {
+                "sContent": "...Citizens gathered to view and trade precious artworks...",
+                "sourceInfo": {
+                  "paper": "第一套",
+                  "level": "CET6",
+                  "year": "2017.6",
+                  "type": "文本题"
+                }
+              },
+              {
+                "sContent": "...its trade group offered to provide standardized forms for automated processing...",
+                "sourceInfo": {
+                  "paper": "第二套",
+                  "level": "CET6",
+                  "year": "2016.6",
+                  "type": "阅读理解"
+                }
+              },
+              {
+                "sContent": "...Take your average trade union member...",
+                "sourceInfo": {
+                  "paper": "第三套",
+                  "level": "CET6",
+                  "year": "2015.12",
+                  "type": "阅读理解"
+                }
+              },
+              {
+                "sContent": "...and obviously trade unions are one of the biggest civil society networks in the UK...",
+                "sourceInfo": {
+                  "paper": "第三套",
+                  "level": "CET6",
+                  "year": "2015.12",
+                  "type": "阅读理解"
+                }
+              },
+              {
+                "sContent": "...a two-year environmental campaign aimed at trade unionists...",
+                "sourceInfo": {
+                  "paper": "第三套",
+                  "level": "CET6",
+                  "year": "2015.12",
+                  "type": "阅读理解"
+                }
+              },
+              {
+                "sContent": "...brings down the trade deficit...",
+                "sourceInfo": {
+                  "paper": "第一套",
+                  "level": "CET6",
+                  "year": "2013.6",
+                  "type": "阅读理解"
+                }
+              },
+              {
+                "sContent": "...and institutions that control the trade in oil exercise extraordinary power...",
+                "sourceInfo": {
+                  "paper": "第二套",
+                  "level": "CET6",
+                  "year": "2013.6",
+                  "type": "阅读理解"
+                }
+              },
+              {
+                "sContent": "...The trade on the Silk Road has played an important role in the development of the civilizations of China...",
+                "sourceInfo": {
+                  "paper": "第三套",
+                  "level": "CET6",
+                  "year": "2013.12",
+                  "type": "文本题"
+                }
+              },
+              {
+                "sContent": "...The larger the trade deficit...",
+                "sourceInfo": {
+                  "level": "CET6",
+                  "year": "2011.12",
+                  "type": "阅读理解"
+                }
+              },
+              {
+                "sContent": "...When the Commerce Department reported last week that the trade deficit in June approached $50 billion...",
+                "sourceInfo": {
+                  "level": "CET6",
+                  "year": "2011.12",
+                  "type": "阅读理解"
+                }
+              }
+            ],
+            "desc": "真题例句"
+          },
+          "usphone": "tred",
+          "ukspeech": "trade&type=1",
+          "star": 0,
+          "usspeech": "trade&type=2",
+          "syno": {
+            "synos": [
+              {
+                "pos": "n",
+                "tran": "贸易，[贸易]交易；[劳经]行业；职业",
+                "hwds": [
+                  { "w": "commerce" },
+                  { "w": "profession" },
+                  { "w": "employment" },
+                  { "w": "career" },
+                  { "w": "pursuit" }
+                ]
+              },
+              {
+                "pos": "vi",
+                "tran": "[贸易]交易，买卖；以物易物",
+                "hwds": [
+                  { "w": "traffic" },
+                  { "w": "exchange" },
+                  { "w": "truck" }
+                ]
+              }
+            ],
+            "desc": "同近"
+          },
+          "ukphone": "treɪd",
+          "phrase": {
+            "phrases": [
+              { "pContent": "foreign trade", "pCn": "外贸，对外贸易" },
+              { "pContent": "international trade", "pCn": "国际贸易" },
+              { "pContent": "world trade", "pCn": "世界贸易" },
+              { "pContent": "trade in", "pCn": "买卖；抵价购物" },
+              {
+                "pContent": "trade something for something",
+                "pCn": "用某物换某物，用某货换某货"
+              },
+              { "pContent": "free trade", "pCn": "[经]自由贸易" },
+              { "pContent": "export trade", "pCn": "出口贸易；出口商" },
+              {
+                "pContent": "world trade organization",
+                "pCn": "世界贸易组织（产生于关贸总协定的乌拉圭谈判， 其目的是为促进多边贸易谈判和协议而成立的。）"
+              },
+              {
+                "pContent": "trade with",
+                "pCn": "从事贸易；和…做贸易；与…做生意"
+              },
+              { "pContent": "trade center", "pCn": "贸易中心" },
+              { "pContent": "trade union", "pCn": "工会" },
+              {
+                "pContent": "processing trade",
+                "pCn": "加工贸易；委托加工贸易"
+              },
+              { "pContent": "carrying trade", "pCn": "海外贸易，转口贸易" },
+              { "pContent": "trade mark", "pCn": "商标；特征" },
+              { "pContent": "trade policy", "pCn": "贸易政策" },
+              { "pContent": "service trade", "pCn": "服务业；劳务贸易" },
+              { "pContent": "trade surplus", "pCn": "贸易顺差；贸易盈余" },
+              { "pContent": "trade fair", "pCn": "商品交易会；贸易展销会" },
+              {
+                "pContent": "trade off",
+                "pCn": "权衡；卖掉；交替使用；交替换位"
+              },
+              { "pContent": "trade for", "pCn": "以…换得；贸易交换" }
+            ],
+            "desc": "短语"
+          },
+          "phone": "treid",
+          "speech": "trade",
+          "relWord": {
+            "desc": "同根",
+            "rels": [
+              {
+                "pos": "adj",
+                "words": [{ "hwd": "trading", "tran": "交易的；贸易的" }]
+              },
+              {
+                "pos": "n",
+                "words": [
+                  { "hwd": "trading", "tran": "交易；贸易；购物" },
+                  { "hwd": "trader", "tran": "交易者；商人；商船" }
+                ]
+              },
+              {
+                "pos": "v",
+                "words": [
+                  { "hwd": "trading", "tran": "交换（trade的ing形式）；做买卖" }
+                ]
+              }
+            ]
+          },
+          "trans": [
+            {
+              "tranCn": "做买卖；交换",
+              "descOther": "英释",
+              "pos": "v",
+              "descCn": "中释",
+              "tranOther": "to buy and sell goods, services etc as your job or business"
+            }
+          ]
+        }
+      }
+    },
+    "bookId": "CET6_2"
+  }
+]
