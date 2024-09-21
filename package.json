@@ -18,14 +18,17 @@
     "@remotion/bundler": "4.0.201",
     "@remotion/cli": "4.0.201",
     "@remotion/zod-types": "4.0.201",
+    "crypto-js": "^4.2.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "remotion": "4.0.201",
-    "zod": "3.22.3"
+    "zod": "3.22.3",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@remotion/eslint-config": "4.0.201",
     "@remotion/tailwind": "4.0.201",
+    "@types/crypto-js": "^4.2.2",
     "@types/react": "^18.0.26",
     "@types/web": "^0.0.143",
     "eslint": "^8.43.0",

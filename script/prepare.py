@@ -5,7 +5,8 @@ from random import choices, choice
 import aiofiles
 import aiohttp
 from edge_tts import Communicate
-from base64 import urlsafe_b64encode
+# from base64 import urlsafe_b64encode
+from hashlib import md5
 
 
 voices = ["zh-CN-XiaoxiaoNeural", "en-GB-LibbyNeural"]
@@ -22,10 +23,16 @@ vocabularies: dict[str, int] = {
 }
 
 
+async def save_audio(contents_voices: list[tuple[str, str]]):
+  for content, voice in contents_voices:
+    commu = Communicate(content, voice)
+    await commu.save(f"public/{md5(content.encode()).hexdigest()}.mp3")
+
+
 async def get_raw_word() -> dict:
   vocab = choices(list(vocabularies.keys()), weights=vocabularies.values())[0]
   try:
-    async with aiofiles.open(f"../vocabulary/{vocab}.json", "r", encoding="utf8") as f:
+    async with aiofiles.open(f"vocabulary/{vocab}.json", "r", encoding="utf8") as f:
       content = await f.read()
   except json.decoder.JSONDecodeError as e:
     print(f"Error in {vocab}.json")
@@ -51,11 +58,7 @@ async def clean_definition(content: dict) -> list:
     cn = tran["tranCn"].strip() if "tranCn" in tran else ""
     en = tran["tranOther"].strip() if "tranOther" in tran else ""
     definition.append([pos, cn, en])
-
-    cn_commu = Communicate(cn, voices[0])
-    await cn_commu.save(f"{urlsafe_b64encode(cn.encode()).decode()}.mp3")
-    en_commu = Communicate(en, voices[1])
-    await en_commu.save(f"{urlsafe_b64encode(en.encode()).decode()}.mp3")
+    await save_audio([(cn, voices[0]), (en, voices[1])])
 
   return definition
 
@@ -68,11 +71,7 @@ async def clean_conjugate(content: dict) -> list:
       en = word["hwd"].strip() if "hwd" in word else ""
       cn = word["tran"].strip() if "tran" in word else ""
       conjugate.append([pos, cn, en])
-
-      cn_commu = Communicate(cn, voices[0])
-      await cn_commu.save(f"{urlsafe_b64encode(cn.encode()).decode()}.mp3")
-      en_commu = Communicate(en, voices[1])
-      await en_commu.save(f"{urlsafe_b64encode(en.encode()).decode()}.mp3")
+      await save_audio([(cn, voices[0]), (en, voices[1])])
 
   return conjugate
 
@@ -88,12 +87,9 @@ async def clean_synonym(content: dict) -> list:
         en.append(hwd.strip())
       else:
         en.append(hwd["w"].strip())
-    synonym.append([pos, cn, "; ".join(en)])
 
-    cn_commu = Communicate(cn, voices[0])
-    await cn_commu.save(f"{urlsafe_b64encode(cn.encode()).decode()}.mp3")
-    en_commu = Communicate("; ".join(en), voices[1])
-    await en_commu.save(f"{urlsafe_b64encode('; '.join(en).encode()).decode()}.mp3")
+    synonym.append([pos, cn, "; ".join(en)])
+    await save_audio([(cn, voices[0]), ("; ".join(en), voices[1])])
 
   return synonym
 
@@ -104,17 +100,15 @@ async def clean_example(content: dict) -> list:
     en = ex["sContent"].strip() if "sContent" in ex else ""
     cn = ex["sCn"].strip() if "sCn" in ex else ""
     example.append([cn, en])
-
-    cn_commu = Communicate(cn, voices[0])
-    await cn_commu.save(f"{urlsafe_b64encode(cn.encode()).decode()}.mp3")
-    en_commu = Communicate(en, voices[1])
-    await en_commu.save(f"{urlsafe_b64encode(en.encode()).decode()}.mp3")
+    await save_audio([(cn, voices[0]), (en, voices[1])])
 
   return example
 
 
 async def clean_word(word: dict) -> dict:
   cleaned = {"word": word["wordHead"], "type": word["bookId"]}
+  await save_audio([(cleaned["word"], voices[1])])
+
   content = word["content"]
   if "trans" in content:
     cleaned["definition"] = await clean_definition(content)
@@ -135,11 +129,7 @@ async def clean_word(word: dict) -> dict:
         cn = quote["translation"]
         en = quote["content"]
         cleaned["quote"] = [en, cn]
-
-        cn_commu = Communicate(cn, voices[0])
-        await cn_commu.save(f"{urlsafe_b64encode(cn.encode()).decode()}.mp3")
-        en_commu = Communicate(en, voices[1])
-        await en_commu.save(f"{urlsafe_b64encode(en.encode()).decode()}.mp3")
+        await save_audio([(cn, voices[0]), (en, voices[1])])
   except Exception as e:
     print(e)
 
@@ -149,7 +139,7 @@ async def clean_word(word: dict) -> dict:
 async def main():
   raw_word = await get_raw_word()
   chosen_word = await clean_word(raw_word)
-  async with aiofiles.open("word.json", "w", encoding="utf8") as f:
+  async with aiofiles.open("src/word.json", "w", encoding="utf8") as f:
     await f.write(json.dumps(chosen_word, ensure_ascii=False, indent=2))
 
 

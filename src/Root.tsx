@@ -1,5 +1,6 @@
 import { Composition } from "remotion";
 import { MyComposition, myCompSchema } from "./Composition";
+import word from "./word.json";
 import "./style.css";
 
 export const RemotionRoot: React.FC = () => {
@@ -14,9 +15,8 @@ export const RemotionRoot: React.FC = () => {
 				height={1920}
 				schema={myCompSchema}
 				defaultProps={{
-					titleText: "Welcome to Remotion with Tailwind CSS",
+					titleText: word.word,
 					titleColor: "#000000",
-					logoColor: "#00bfff",
 				}}
 			/>
 		</>
